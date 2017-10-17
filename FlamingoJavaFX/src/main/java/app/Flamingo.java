@@ -25,8 +25,7 @@ public class Flamingo extends Application {
 	private BorderPane GameBorderPane = null;
 	private BorderPane BlackJackBorderPane = null;
 	private GameBorderController GBC = null;
-	private BlackJackController BJC = null;
-	//private Table GameTable = new Table();
+	private BlackJackController BJC;
 	private GameClient gClient = null;
 	private Player appPlayer;
 	
@@ -37,8 +36,8 @@ public class Flamingo extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
+		this.primaryStage = primaryStage;
 		showClientServer(primaryStage);
-		//HandleRoot(primaryStage);
 
 	}
 	public void setPlayer(Player player) {
@@ -84,7 +83,7 @@ public class Flamingo extends Application {
 			// Load person overview.
 			FXMLLoader loader = new FXMLLoader();
 			
-			loader =  new FXMLLoader(getClass().getResource("/poker/app/view/ClientServerStart.fxml"));
+			loader =  new FXMLLoader(getClass().getResource("/game/app/view/ClientServerStart.fxml"));
 			 
 			BorderPane ClientServerOverview = (BorderPane) loader.load();
 
@@ -107,7 +106,7 @@ public class Flamingo extends Application {
 		try {
 						
 			FXMLLoader loader = new FXMLLoader();			
-			loader =  new FXMLLoader(getClass().getResource("/poker/app/view/GameBorder.fxml"));					
+			loader =  new FXMLLoader(getClass().getResource("/game/app/view/GameBorder.fxml"));					
 			GameBorderPane = (BorderPane) loader.load();
 			Scene scene = new Scene(GameBorderPane);
 			primaryStage.setScene(scene);
@@ -122,12 +121,11 @@ public class Flamingo extends Application {
 	}
 	
 	public void ShowBlackJack()
-	{
-		 
+	{		 
 		try {
 						
 			FXMLLoader loader = new FXMLLoader();			
-			loader =  new FXMLLoader(getClass().getResource("/poker/app/view/BlackJack.fxml"));					
+			loader =  new FXMLLoader(getClass().getResource("/game/app/view/BlackJack.fxml"));					
 			BlackJackBorderPane = (BorderPane) loader.load();
 			Scene scene = new Scene(BlackJackBorderPane);
 			primaryStage.setScene(scene);

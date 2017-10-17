@@ -5,8 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-
-<BorderPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.40">
+<BorderPane prefHeight="589.0" prefWidth="483.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" stylesheets="@GameTheme.css" fx:controller="app.controller.BlackJackController">
    <top>
       <Label text="BlackJack" BorderPane.alignment="CENTER" />
    </top>
