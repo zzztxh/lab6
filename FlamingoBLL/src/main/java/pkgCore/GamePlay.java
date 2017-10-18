@@ -23,4 +23,9 @@ public abstract class GamePlay {
 	{
 		//TODO: Implement this method		
 	}
+	protected Player GetPlayerInGame(Player p)
+	{
+		//TODO: Implement this method	
+		return null;
+	}
 }

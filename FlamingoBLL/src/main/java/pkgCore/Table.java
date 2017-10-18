@@ -22,4 +22,9 @@ public class Table {
 		//TODO: Implement this method		
 	}
 	
+	public Player GetPlayerFromTable(Player p)
+	{
+		//TODO: Implement this method	
+		return null;
+	}
 }
