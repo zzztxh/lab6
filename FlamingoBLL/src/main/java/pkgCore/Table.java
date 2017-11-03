@@ -1,12 +1,13 @@
 package pkgCore;
 
-import java.util.ArrayList;
+import java.io.Serializable;
+import java.util.HashMap;
 import java.util.UUID;
 
-public class Table {
+public class Table implements Serializable{
 
 	private UUID TableID;
-	private ArrayList<Player> PlayersInTable = new ArrayList<Player>();
+	private HashMap<UUID, Player> hmTablePlayer = new HashMap<UUID,Player>();
 	
 	public Table() {
 		super();
@@ -15,16 +16,16 @@ public class Table {
 	
 	public void AddPlayerToTable(Player p)
 	{
-		//TODO: Implement this method
+		hmTablePlayer.put(p.getPlayerID(), p);
 	}
 	public void RemovePlayerFromTable(Player p)
 	{
-		//TODO: Implement this method		
+		hmTablePlayer.remove(p.getPlayerID());
 	}
 	
 	public Player GetPlayerFromTable(Player p)
 	{
-		//TODO: Implement this method	
-		return null;
+		return (Player)hmTablePlayer.get(p.getPlayerID());
+
 	}
 }

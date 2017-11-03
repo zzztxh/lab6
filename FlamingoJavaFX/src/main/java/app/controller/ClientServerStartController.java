@@ -84,9 +84,8 @@ public class ClientServerStartController implements Initializable {
 			strComputerName = txtComputerName.getText();
 			iPort = Integer.parseInt(txtClientPort.getText());
 		}
-		
-	     mainApp.ShowBlackJack();
-		//mainApp.showPoker(bServer, strComputerName, iPort, txtPlayerName.getText());
+				
+	     mainApp.StartBlackJack(bServer, strComputerName, iPort, txtPlayerName.getText());
 	}
 
 	@FXML

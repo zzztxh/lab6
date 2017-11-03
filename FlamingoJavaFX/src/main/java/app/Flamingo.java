@@ -40,28 +40,20 @@ public class Flamingo extends Application {
 		showClientServer(primaryStage);
 
 	}
-	public void setPlayer(Player player) {
-		this.appPlayer = player;
-	}
 	
+	public Player getAppPlayer() {
+		return appPlayer;
+	}
+
+	public void setAppPlayer(Player appPlayer) {
+		this.appPlayer = appPlayer;
+	}
+
 	public void showPoker(boolean bStartHub, String strComputerName, int iPort, String strPlayerName) {
 
-		if (bStartHub) {
-			try {
-				gHub = new GameHub(iPort);
- 
-			} catch (Exception e) {
-				System.out.println("Error: Can't listen on port " + iPort);
-				return;
-			}
-		}
-		try {
-			gClient = new GameClient(strComputerName, iPort);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 
-		setPlayer(new Player(strPlayerName, gClient.getID()));
+
+
 		
 		HandleRoot();
 
@@ -120,6 +112,29 @@ public class Flamingo extends Application {
 		}
 	}
 	
+	public void StartBlackJack(boolean bStartHub, String strComputerName, int iPort, String strPlayerName)
+	{
+		if (bStartHub) {
+			try {
+				gHub = new GameHub(iPort);
+ 
+			} catch (Exception e) {
+				System.out.println("Error: Can't listen on port " + iPort);
+				return;
+			}
+		}
+		try {
+			gClient = new GameClient(strComputerName, iPort);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		this.setAppPlayer(new Player(strPlayerName, gClient.getID()));
+		
+		ShowBlackJack();
+		
+	}
+	
 	public void ShowBlackJack()
 	{		 
 		try {
@@ -131,6 +146,7 @@ public class Flamingo extends Application {
 			primaryStage.setScene(scene);
 			BJC = loader.getController();
 			BJC.setMainApp(this);
+		
 			primaryStage.show();
 
 		} catch (IOException e) {
@@ -138,6 +154,14 @@ public class Flamingo extends Application {
 			e.printStackTrace();
 		}
 	}
+	
+	public void messageSend(final Object message)
+	{
+		System.out.println("Sending message from MainApp");
+		gClient.messageSend(message);	
+	}
+	
+	
 	
 	private class GameClient extends Client {
 
@@ -165,15 +189,15 @@ public class Flamingo extends Application {
 		@Override
 		protected void messageReceived(final Object message) {
 			Platform.runLater(() -> {		
-				//System.out.println("Message Received.  The message: " + message);
+				System.out.println("Message Received.  The message: " + message);
 				
 				if (message instanceof String)
 				{				
-					System.out.println("Message Received " + message);
+					System.out.println("Message Received from hub " + message);
 				}
 				else if (message instanceof Table)
 				{
-					
+					BJC.HandleTableState((Table)message); 
 				}
 				else if (message instanceof GamePlay)
 				{

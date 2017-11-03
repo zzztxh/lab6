@@ -1,13 +1,22 @@
 package pkgCore;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.UUID;
 
 import pkgEnum.eGameType;
 
 public abstract class GamePlay {
 
 	private eGameType eGameType;
-	private ArrayList<Player> GamePlayers = new ArrayList<Player>();
+	//private ArrayList<Player> GamePlayers = new ArrayList<Player>();
+	
+	private HashMap<UUID, Player> hmGamePlayers = new HashMap<UUID, Player>();
+	
+	
+	
+	
+	
 	
 	public GamePlay(eGameType eGameType)
 	{
