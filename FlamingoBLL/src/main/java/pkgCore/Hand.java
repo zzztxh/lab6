@@ -19,8 +19,10 @@ public abstract class Hand {
 		return cards;
 	}
 
-	public void Draw(Deck d) throws DeckException {
-		cards.add(d.Draw());
+	public Card Draw(Deck d) throws DeckException {
+		Card c = d.Draw();
+		cards.add(c);
+		return c;
 	}
 	
 	protected HandScore getHS() {
