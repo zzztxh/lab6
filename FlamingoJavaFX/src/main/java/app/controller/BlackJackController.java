@@ -76,8 +76,6 @@ public class BlackJackController implements Initializable {
 	
 	public void HandleTableState(Table t) {
 
-		//TODO: Implement this.
-
 		Platform.runLater(() -> {		
 			
 			lblNameP1.setText(FlamingoGame.getAppPlayer().getPlayerName());

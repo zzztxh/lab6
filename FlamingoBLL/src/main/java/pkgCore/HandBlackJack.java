@@ -3,7 +3,8 @@ package pkgCore;
 import java.util.Collections;
 import java.util.LinkedList;
 
-public class HandBlackJack extends Hand {
+public class HandBlackJack extends Hand  {
+
 
 	@Override
 	public HandScore ScoreHand() {
@@ -62,6 +63,11 @@ public class HandBlackJack extends Hand {
 	@Override
 	protected HandScoreBlackJack getHS() {
 		return (HandScoreBlackJack)super.getHS();
+	}
+
+	@Override
+	public void setbWinner(boolean bWinner) {
+		super.setbWinner(bWinner);
 	}
 	
 	

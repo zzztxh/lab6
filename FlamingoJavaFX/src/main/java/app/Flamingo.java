@@ -107,7 +107,6 @@ public class Flamingo extends Application {
 			primaryStage.show();
 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -150,7 +149,6 @@ public class Flamingo extends Application {
 			primaryStage.show();
 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

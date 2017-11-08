@@ -8,47 +8,44 @@ import java.util.UUID;
 
 import pkgEnum.eGameType;
 import pkgException.DeckException;
+import pkgException.HandException;
 
 public abstract class GamePlay {
 
+	private UUID GameID;
 	private eGameType eGameType;
 	private HashMap<UUID, Player> hmGamePlayers = new HashMap<UUID, Player>();
-	private HashMap<UUID, Hand> hmGameHands = new HashMap<UUID, Hand>();
-	private Player pDealer = new Player("Dealer", 0);
+	private HashMap<GamePlayerHand, Hand> hmGameHands = new HashMap<GamePlayerHand, Hand>();
 	private Deck dGameDeck;
+	public GamePlay(eGameType eGameType, HashMap<UUID, Player> hmTablePlayers, Deck dGameDeck) {
 
-	public GamePlay(eGameType eGameType, HashMap<UUID, Player> hmTablePlayers) {
-		super();
+		// Set the GameID
+		this.GameID = UUID.randomUUID();
+
+		// Set the eGametype
 		this.eGameType = eGameType;
 		
+		// Add a player to the game based on players at the table.
 		Iterator it = hmTablePlayers.entrySet().iterator();
 		while (it.hasNext()) {
 			Map.Entry pair = (Map.Entry) it.next();
-			Player p = (Player) pair.getValue();			
-			// TODO: Add this player to the game's player HashMap
+			Player p = (Player) pair.getValue();
+
+			//TODO: Add the player to the game
 		}
 
 		switch (eGameType) {
 		case BLACKJACK:
-			//TODO: Build the deck based on Blackjack game
+			//TODO: Set the game deck to the existing passed-in deck
 			break;
 		case POKER:
-			//TODO: Build the deck based on Poker game.
+			//TODO: Set the game deck to a brand new deck
 			break;
 		}
 	}
 
-	private void AddPlayersToGame(ArrayList<Player> Players) {
-		// TODO: Implement this method
-	}
-
-	protected void RemovePlayerFromGame(Player p) {
-		// TODO: Implement this method
-	}
-
-	protected Player GetPlayerInGame(Player p) {
-		// TODO: Implement this method
-		return null;
+	public UUID getGameID() {
+		return GameID;
 	}
 
 	public eGameType geteGameType() {
@@ -59,35 +56,41 @@ public abstract class GamePlay {
 		return hmGamePlayers;
 	}
 
-	
-	private HashMap<UUID, Hand> getHmGameHands() {
+	private HashMap<GamePlayerHand, Hand> getHmGameHands() {
 		return hmGameHands;
 	}
-	
-	protected Hand gethmGameHand(Player p)
-	{
-		return (Hand)this.hmGameHands.get(p.getPlayerID());
+
+	protected Hand gethmGameHand(GamePlayerHand GPH) {
+		return this.hmGameHands.get(GPH.getGPH());
 	}
 
-	public void setHmGameHands(HashMap<UUID, Hand> hmGameHands) {
+	public void setHmGameHands(HashMap<GamePlayerHand, Hand> hmGameHands) {
 		this.hmGameHands = hmGameHands;
 	}
-	
-	protected void putHandToGame(Player p, Hand h)
-	{
-		this.hmGameHands.put(p.getPlayerID(),h);
-	}
-	
 
-	public Player getpDealer() {
-		return pDealer;
+	protected void putHandToGame(GamePlayerHand GPH, Hand h) {
+		this.hmGameHands.put(GPH, h);
 	}
 
-	
+
+
 	public Deck getdGameDeck() {
 		return dGameDeck;
 	}
 
-	protected abstract Card Draw(Player p) throws DeckException ;
+	protected abstract Card Draw(GamePlayerHand GPH) throws DeckException, HandException;
+
+	private void AddPlayerToGame(Player p) {
+		hmGamePlayers.put(p.getPlayerID(), p);
+	}
+
+	protected void RemovePlayerFromGame(Player p) {
+		hmGamePlayers.remove(p.getPlayerID());
+	}
+
+	protected Player GetPlayerInGame(Player p) {
+		return (Player)hmGamePlayers.get(p.getPlayerID());
+
+	}
 
 }
