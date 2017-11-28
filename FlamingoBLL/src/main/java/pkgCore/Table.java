@@ -28,4 +28,10 @@ public class Table implements Serializable{
 		return (Player)hmTablePlayer.get(p.getPlayerID());
 
 	}
+
+	protected HashMap<UUID, Player> getHmTablePlayer() {
+		return hmTablePlayer;
+	}
+	
+	
 }

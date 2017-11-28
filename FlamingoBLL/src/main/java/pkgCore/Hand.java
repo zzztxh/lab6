@@ -23,6 +23,10 @@ public abstract class Hand {
 		return HandID;
 	}
 
+	protected void setHandID(UUID HandID)
+	{
+		this.HandID = HandID;
+	}
 
 	protected ArrayList<Card> getCards() {
 		return cards;

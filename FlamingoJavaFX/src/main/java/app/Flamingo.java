@@ -11,6 +11,7 @@ import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import netgame.common.Client;
@@ -22,8 +23,8 @@ public class Flamingo extends Application {
 	
 	private Stage primaryStage;	
 	private GameHub gHub = null;
-	private BorderPane GameBorderPane = null;
-	private BorderPane BlackJackBorderPane = null;
+	private AnchorPane GameBorderPane = null;
+	private AnchorPane BlackJackBorderPane = null;
 	private GameBorderController GBC = null;
 	private BlackJackController BJC;
 	private GameClient gClient = null;
@@ -99,7 +100,7 @@ public class Flamingo extends Application {
 						
 			FXMLLoader loader = new FXMLLoader();			
 			loader =  new FXMLLoader(getClass().getResource("/game/app/view/GameBorder.fxml"));					
-			GameBorderPane = (BorderPane) loader.load();
+			GameBorderPane = (AnchorPane) loader.load();
 			Scene scene = new Scene(GameBorderPane);
 			primaryStage.setScene(scene);
 			GBC = loader.getController();
@@ -140,7 +141,7 @@ public class Flamingo extends Application {
 						
 			FXMLLoader loader = new FXMLLoader();			
 			loader =  new FXMLLoader(getClass().getResource("/game/app/view/BlackJack.fxml"));					
-			BlackJackBorderPane = (BorderPane) loader.load();
+			BlackJackBorderPane = (AnchorPane) loader.load();
 			Scene scene = new Scene(BlackJackBorderPane);
 			primaryStage.setScene(scene);
 			BJC = loader.getController();
