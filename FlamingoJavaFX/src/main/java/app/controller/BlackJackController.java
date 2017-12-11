@@ -289,11 +289,13 @@ public class BlackJackController implements Initializable {
 
 	private PathTransition CreatePathTransition(Point2D fromPoint, Point2D toPoint, ImageView img) {
 		Path path = new Path();
+		
 		ArcTo arcTo = new ArcTo();
 		arcTo.setX(60.0);
 		arcTo.setY(30.0);
 		arcTo.setRadiusX(45.0);
 		arcTo.setRadiusY(90.0);
+		
 		path.getElements().add(new MoveTo(fromPoint.getX(), fromPoint.getY()));
 		path.getElements().add(new CubicCurveTo(toPoint.getX() * 2, toPoint.getY() * 2, toPoint.getX() / 3,
 				toPoint.getY() / 3, toPoint.getX(), toPoint.getY()));
@@ -303,7 +305,7 @@ public class BlackJackController implements Initializable {
 		path.getElements().add(arcTo);
 		path.getElements().add(new VLineTo(500.0f));
 		PathTransition pathTransition = new PathTransition();
-		pathTransition.setDuration(Duration.millis(1700));
+		pathTransition.setDuration(Duration.millis(1500));
 		pathTransition.setPath(path);
 		pathTransition.setNode(img);
 		pathTransition.setOrientation(PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
