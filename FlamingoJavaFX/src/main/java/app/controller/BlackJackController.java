@@ -287,13 +287,10 @@ public class BlackJackController implements Initializable {
 
 	private PathTransition CreatePathTransition(Point2D fromPoint, Point2D toPoint, ImageView img) {
 		Path path = new Path();
-		
-		//TODO: Fix the Path transition.  My Path looks terrible...  do something cool :)
-		
 		path.getElements().add(new MoveTo(fromPoint.getX(), fromPoint.getY()));
-		path.getElements().add(new CubicCurveTo(toPoint.getX() * 2, toPoint.getY() * 2, toPoint.getX() / 3,
-				toPoint.getY() / 3, toPoint.getX(), toPoint.getY()));
-		// path.getElements().add(new CubicCurveTo(0, 120, 0, 240, 380, 240));
+		//path.getElements().add(new CubicCurveTo(toPoint.getX() * 2, toPoint.getY() * 2, toPoint.getX() / 3,
+			//toPoint.getY() / 3, toPoint.getX(), toPoint.getY()));
+		path.getElements().add(new CubicCurveTo(0, 150, 0, 240, toPoint.getX() +50, toPoint.getY()));
 		PathTransition pathTransition = new PathTransition();
 		pathTransition.setDuration(Duration.millis(750));
 		pathTransition.setPath(path);
