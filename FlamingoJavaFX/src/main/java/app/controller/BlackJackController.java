@@ -25,9 +25,11 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.shape.ArcTo;
 import javafx.scene.shape.CubicCurveTo;
 import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
+import javafx.scene.shape.VLineTo;
 import javafx.util.Duration;
 import pkgCore.Action;
 import pkgCore.GamePlay;
@@ -287,12 +289,21 @@ public class BlackJackController implements Initializable {
 
 	private PathTransition CreatePathTransition(Point2D fromPoint, Point2D toPoint, ImageView img) {
 		Path path = new Path();
+		ArcTo arcTo = new ArcTo();
+		arcTo.setX(60.0);
+		arcTo.setY(30.0);
+		arcTo.setRadiusX(45.0);
+		arcTo.setRadiusY(90.0);
 		path.getElements().add(new MoveTo(fromPoint.getX(), fromPoint.getY()));
-		//path.getElements().add(new CubicCurveTo(toPoint.getX() * 2, toPoint.getY() * 2, toPoint.getX() / 3,
-			//toPoint.getY() / 3, toPoint.getX(), toPoint.getY()));
-		path.getElements().add(new CubicCurveTo(0, 150, 0, 240, toPoint.getX() +50, toPoint.getY()));
+		path.getElements().add(new CubicCurveTo(toPoint.getX() * 2, toPoint.getY() * 2, toPoint.getX() / 3,
+				toPoint.getY() / 3, toPoint.getX(), toPoint.getY()));
+		path.getElements().add(new CubicCurveTo(0, 360, 0, 360, 360, 360));
+		path.getElements().add(new CubicCurveTo(0, 10, 0, 10, 16, 16));
+		path.getElements().add(new CubicCurveTo(10, 0, 10, 0, 10, 500));
+		path.getElements().add(arcTo);
+		path.getElements().add(new VLineTo(500.0f));
 		PathTransition pathTransition = new PathTransition();
-		pathTransition.setDuration(Duration.millis(750));
+		pathTransition.setDuration(Duration.millis(1700));
 		pathTransition.setPath(path);
 		pathTransition.setNode(img);
 		pathTransition.setOrientation(PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
